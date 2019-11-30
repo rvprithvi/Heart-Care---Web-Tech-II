@@ -1,0 +1,114 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+    
+    {%load static%}
+    <script src="/static/js/check.js"></script>
+    <style>
+        body{
+        	background-image : url({% static '1111.jpg' %});
+            background-repeat: no-repeat;
+            background-size:cover;
+        }
+        .container{
+        	
+        	text-align:center;
+        	/*margin-left:493px;*/
+        	width:50%;
+        	border-radius: 5px;
+        	border-color: black;
+        	padding:20px;
+        }
+        #ok{
+        color:white;
+        background-color:black;
+        opacity:0.6;
+        width:650px;
+        
+        border: 3px black solid;
+        	border-radius:5px;
+        }
+        #yes{
+        	padding:20px;
+        }
+        input[type=number],select{
+        	width: 100%;
+        	padding:12px;
+        	border: 1px solid #ccc;
+        	border-radius:4px;
+        	box-sizing: border-box;
+        	resize: vertical;
+        }
+        label{
+        	padding: 12px 12px 12px 0;
+        	display: inline-block;
+        }
+        #sub{
+        	padding :12px 20px;
+        	border-radius: 4px;
+        	cursor: pointer;
+        	float:right;
+        }
+    </style>
+    <div class='container' id="ok">
+    <div id="yes">
+    <b><label>Age :</label></b> <input class="form-control" id="age" type="number" name = "age"></input><br><br><br>
+    <b><label>Location :</label></b>  <select id="loc">
+        <option value="0">Bengaluru</option>
+        <option value="1">Hubli</option>
+        <option value="2">Mysore</option>
+        <option value="3">Mangaluru</option>
+    </select><br><br><br>
+    <b><label>Gender :</label></b>  <SELECT id="gender">
+        <option value="0">Female</option>
+        <option value="1">Male</option>
+    </SELECT><br><br><br>
+    <b><label>Chest Pain Type : </label></b> <select id="cpt">
+        <option value="0">Asymptomatic</option>
+        <option value="1">Atypical Angina</option>
+        <option value="2">Non-anginal Pain</option>
+        <option value="3">Typical Angina</option>
+    </select><br><br><br>
+    <b><label>Resting Blood Pressure (in mmHg) : </label></b> <input class="form-control" id = "rbp" type ="number" /><br><br><br>
+    <b><label>Serum Cholestoral (in mg/dl) : </label></b> <input class="form-control" id = "chol" type ="number" /><br><br><br>
+    <b><label>Fasting Blood Sugar (in mg/dl) : </label></b> <select id='fbs'>
+        <option value='1'>>120 mg/dl </option>
+        <option value='0'><120 mg/dl </option>
+        </select><br><br><br>
+    <b><label>Resting Electrocardiographic Results : </label></b> <br><select id="recg">
+        <option value="0">Showing Probable or Definite left Ventricular Hypertrophy by Estes' criteria</option>
+        <option value="1">Normal</option>
+        <option value="2">Having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of > 0.05 mV)</option>
+    </select><br><br><br>
+    <b><label>Maximum Heart Rate : </label></b> <br> <input class="form-control" id = "mhra" type ="number"/><br><br><br>
+    <b><label>Exercise Induced Angina: </label></b> <br><select id="eia">
+        <option value="0">No</option>
+        <option value="1">Yes</option></select><br><br><br>
+    <b><label>ST Depression Induced by Exercise Relative to Rest : </label></b> <br> <input class="form-control" id = "st" type ="number"/><br><br><br>
+    <b><label>Nuclear stress test (Thalium Scan) : </label></b><br> <select id="thal">
+        <option value="1">Fixed Defect</option>
+        <option value="2">Normal</option>
+        <option value="3">Reversable Defect</option></select><br><br><br>
+    <b><label>The Slope of the Peak Exercise ST Segment : </label></b> <br><select id = "slope">
+        <option value="0">Downsloping</option>
+        <option value ="1">Flat</option>
+        <option value="2">Upsloping</option>
+    </select><br><br><br>
+    <b><label>Number of Major Vessels(0-3) Coloured By Flourosopy : </label></b> <br><select id="cv">
+        <option value='0'>None</option>
+        <option value='1'>1</option>
+        <option value='2'>2</option>
+        <option value='3'>3</option>
+    </select><br><br><br>
+
+
+    <input class="btn btn-primary" id="sub" type="button" value= "Submit">
+    <br/>
+    <br/>
+    </div>
+</div>
+   
+  
+  
+{% endblock %}

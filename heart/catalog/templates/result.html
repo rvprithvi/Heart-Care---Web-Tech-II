@@ -1,0 +1,68 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    
+    {%load static%}
+    <script>
+    	window.onload = function(){
+    		div =  document.getElementById("result");
+    		loc = div.innerHTML;
+    		console.log(loc)
+    		xhr = new XMLHttpRequest();
+    		if(xhr)
+			{
+				xhr.onreadystatechange =addresult;
+				xhr.open("GET", "/catalog/result", true);
+				xhr.send(null);
+			}
+			function addresult(){
+				if(xhr.readyState=="4"&&xhr.status==200){
+					var cont = document.getElementById("result");
+					var data = JSON.parse(xhr.responseText);
+					if(data['result']==1)
+					{
+						cont.innerHTML = "DANGER!! Please consult a cardiologist immediately.<br><br><div id='doc'><input class='btn btn-primary' id='sub' type='button' value= 'Find Best Cadiologists around you'></div>"
+						callme();
+					}
+					else{
+						cont.innerHTML = "YAY!! Your Heart is Healthy!!"
+					}
+					//cont.innerHTML = "<br><br>"+data['result'];
+		  		}
+			}
+			function callme(){
+				console.log("hi");
+				xhr.onreadystatechange = doctor;
+				xhr.open("GET","catalog/doctors?loc="+loc,true);
+				xhr.send(null);
+			}
+			function doctor(){
+				if(xhr.readyState=='4'&&xhr.status==200){
+					var data = JSON.parse(xhr.responseText);
+					console.log(Object.keys(data).length);
+					len = Object.keys(data).length;
+					var htm = "<table class = 'table table-striped'><th>Name</th><th>Phone</th>";
+					for(var i=0;i<len;i++)
+					{
+						htm=htm+"<tr><td>"+data[i][0]+" </td><td>"+data[i][1]+"</td></tr>";
+					}
+					var btn = document.getElementById('sub');
+					btn.onclick = display
+					function display(){
+						
+						var doc = document.getElementById('doc');
+						doc.innerHTML = htm;
+				}
+
+				}
+			}
+
+    	}
+
+    </script>
+    	
+    	
+
+    	<div id="result">{{ loc }}</div>
+
+    {% endblock %}
